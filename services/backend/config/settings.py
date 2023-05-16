@@ -57,7 +57,8 @@ THIRD_PARTY_APPS = [
     "aws_xray_sdk.ext.django",
 ]
 
-LOCAL_APPS = ["apps.content", "apps.demo", "apps.finances", "apps.users", "apps.notifications", "apps.websockets"]
+LOCAL_APPS = ["apps.content", "apps.demo", "apps.finances",
+              "apps.users", "apps.notifications", "apps.websockets", "apps.ocr"]
 
 INSTALLED_APPS = DJANGO_CORE_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -107,7 +108,7 @@ PASSWORD_HASHERS = env.list(
         'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
         'django.contrib.auth.hashers.Argon2PasswordHasher',
         'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-        'django.contrib.auth.hashers.ScryptPasswordHasher',
+        # 'django.contrib.auth.hashers.ScryptPasswordHasher',
     ],
 )
 
@@ -217,7 +218,8 @@ SOCIAL_AUTH_USER_MODEL = "users.User"
 SOCIAL_AUTH_USER_FIELDS = ['email', 'username']
 SOCIAL_AUTH_STRATEGY = "apps.users.strategy.DjangoJWTStrategy"
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
-SOCIAL_AUTH_REDIRECT_IS_HTTPS = env.bool('SOCIAL_AUTH_REDIRECT_IS_HTTPS', default=True)
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = env.bool(
+    'SOCIAL_AUTH_REDIRECT_IS_HTTPS', default=True)
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
     'social_core.pipeline.social_auth.social_uid',
@@ -229,9 +231,12 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 )
-SOCIAL_AUTH_ALLOWED_REDIRECT_HOSTS = env.list('SOCIAL_AUTH_ALLOWED_REDIRECT_HOSTS', default=[])
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY', default='')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET', default='')
+SOCIAL_AUTH_ALLOWED_REDIRECT_HOSTS = env.list(
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_HOSTS', default=[])
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env(
+    'SOCIAL_AUTH_GOOGLE_OAUTH2_KEY', default='')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env(
+    'SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET', default='')
 SOCIAL_AUTH_FACEBOOK_KEY = env('SOCIAL_AUTH_FACEBOOK_KEY', default='')
 SOCIAL_AUTH_FACEBOOK_SECRET = env('SOCIAL_AUTH_FACEBOOK_SECRET', default='')
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'public_profile']
@@ -266,7 +271,8 @@ if not STRIPE_CHECKS_ENABLED:
     SILENCED_SYSTEM_CHECKS.append("djstripe.C001")
 DJSTRIPE_USE_NATIVE_JSONFIELD = False
 
-SUBSCRIPTION_TRIAL_PERIOD_DAYS = env("SUBSCRIPTION_TRIAL_PERIOD_DAYS", default=7)
+SUBSCRIPTION_TRIAL_PERIOD_DAYS = env(
+    "SUBSCRIPTION_TRIAL_PERIOD_DAYS", default=7)
 
 GRAPHENE = {
     "SCHEMA": "config.schema.schema",

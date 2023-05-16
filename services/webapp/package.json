@@ -22,6 +22,7 @@
     "immer": "^9.0.16",
     "intl": "^1.2.5",
     "isomorphic-fetch": "^3.0.0",
+    "konva": "^9.0.1",
     "lodash.throttle": "^4.1.1",
     "normalize.css": "^8.0.1",
     "plop": "^3.1.1",
@@ -36,6 +37,7 @@
     "react-hook-form": "^7.34.0",
     "react-infinite-scroll-hook": "^4.0.4",
     "react-intl": "^6.2.1",
+    "react-konva": "^18.2.7",
     "react-loading-skeleton": "^3.1.0",
     "react-markdown": "^8.0.3",
     "react-redux": "7.2.4",
@@ -50,10 +52,11 @@
     "storybook-react-router": "^1.0.8",
     "styled-components": "^5.3.6",
     "styled-theming": "^2.2.0",
-    "ua-parser-js": "^1.0.32"
+    "ua-parser-js": "^1.0.32",
+    "use-image": "^1.1.0"
   },
   "scripts": {
-    "start": "yarn graphql:generate-types && yarn run relay && concurrently \"react-scripts start\" \"yarn relay --watch\"",
+    "start": "yarn graphql:generate-types && yarn run relay && concurrently \"PORT=3002 react-scripts start\" \"yarn relay --watch\"",
     "build": "react-scripts build",
     "build-emails": "yarn graphql:generate-types && node ./scripts/build-emails.js",
     "test": "react-scripts test",
@@ -65,7 +68,7 @@
     "verify": "node ./scripts/verify.js",
     "storybook": "yarn build-emails && start-storybook -s ./public --port 5001",
     "build-storybook": "node ./scripts/build-storybook.js",
-    "graphql:download-schema": "/bin/sh ./scripts/download-graphql-schema.sh",
+    "graphql:download-schema": "/bin/bash ./scripts/download-graphql-schema.sh",
     "graphql:generate-types": "yarn graphql-codegen -c ./graphql/codegen/contentful.yml && yarn graphql-codegen -c graphql/codegen/schemaTypes.yml",
     "relay": "yarn run relay-compiler"
   },

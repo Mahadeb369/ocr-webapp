@@ -6,6 +6,7 @@ import { H1 } from '../theme/typography';
 import { AuthRoute } from '../shared/components/routes/authRoute';
 import { AnonymousRoute } from '../shared/components/routes/anonymousRoute';
 import { ActiveSubscriptionContext } from '../routes/finances/activeSubscriptionContext/activeSubscriptionContext.component';
+import { BrowseHistory } from '../routes/ocr/browseHistoryItemList';
 import { LANG_PREFIX, RoutesConfig } from './config/routes';
 import { DEFAULT_LOCALE, translationMessages } from './config/i18n';
 import {
@@ -28,6 +29,7 @@ import {
   Subscriptions,
   TermsAndConditions,
   TransactionHistory,
+  Ocr,
 } from './asyncComponents';
 import { ValidRoutesProviders } from './providers/validRoutesProvider';
 
@@ -60,6 +62,8 @@ export const App = () => {
           <Route path={RoutesConfig.finances.paymentConfirm} element={<FinancesPaymentConfirm />} />
           <Route path={RoutesConfig.finances.history} element={<TransactionHistory />} />
           <Route path={RoutesConfig.documents} element={<Documents />} />
+          <Route path={RoutesConfig.ocr.index} element={<Ocr />} />
+          <Route path={RoutesConfig.history} element={<BrowseHistory />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path={LANG_PREFIX} element={<AuthRoute allowedRoles={Role.ADMIN} />}>

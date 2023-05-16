@@ -33,3 +33,4 @@ export const TransactionHistory = asyncComponent(
 );
 export const Documents = asyncComponent(() => import('../routes/documents'), 'Documents');
 //<-- IMPORT ROUTE -->
+export const Ocr = asyncComponent(() => import('../routes/ocr'), 'Ocr');

@@ -63,8 +63,8 @@ export class MainDatabase extends Construct {
     });
 
     const dbPort = new Port({
-      fromPort: 5434,
-      toPort: 5434,
+      fromPort: 5432,
+      toPort: 5432,
       protocol: Protocol.TCP,
       stringRepresentation: "",
     });

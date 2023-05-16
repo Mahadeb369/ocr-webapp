@@ -5,6 +5,9 @@ schema {
 }
 
 type ApiMutation {
+  createCrossingItem(input: CreateBrowseHistoryMutationInput!): CreateBrowseHistoryMutationPayload
+  updateCrossingItem(input: UpdateBrowseHistoryMutationInput!): UpdateBrowseHistoryMutationPayload
+  deleteCrossingItem(input: DeleteBrowseHistoryMutationInput!): DeleteBrowseHistoryMutationPayload
   changeActiveSubscription(input: ChangeActiveSubscriptionMutationInput!): ChangeActiveSubscriptionMutationPayload
   cancelActiveSubscription(input: CancelActiveSubscriptionMutationInput!): CancelActiveSubscriptionMutationPayload
   updateDefaultPaymentMethod(input: UpdateDefaultPaymentMethodMutationInput!): UpdateDefaultPaymentMethodMutationPayload
@@ -32,6 +35,34 @@ type ApiMutation {
 
 type ApiSubscription {
   notificationCreated(before: String, after: String, first: Int, last: Int): NotificationConnection
+}
+
+type BrowseHistoryConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """Contains the nodes in this connection."""
+  edges: [BrowseHistoryEdge]!
+}
+
+"""A Relay edge containing a `BrowseHistory` and its cursor."""
+type BrowseHistoryEdge {
+  """The item at the end of the edge"""
+  node: BrowseHistoryType
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type BrowseHistoryType implements Node {
+  """The ID of the object."""
+  id: ID!
+  base64Data: String
+  createdBy: CurrentUserType
+  createdAt: DateTime!
+
+  """Actual primary key of a Browse History item"""
+  actualId: ID
 }
 
 input CancelActiveSubscriptionMutationInput {
@@ -428,6 +459,18 @@ type ContentfulDemoItemType implements Node {
   pk: String
 }
 
+input CreateBrowseHistoryMutationInput {
+  base64Data: String
+  createdBy: String
+  clientMutationId: String
+}
+
+type CreateBrowseHistoryMutationPayload {
+  browseHistory: BrowseHistoryType
+  browseHistoryEdge: BrowseHistoryEdge
+  clientMutationId: String
+}
+
 input CreateCrudDemoItemMutationInput {
   name: String!
   createdBy: String
@@ -534,6 +577,16 @@ scalar DateTime
 
 """The `Decimal` scalar type represents a python Decimal."""
 scalar Decimal
+
+input DeleteBrowseHistoryMutationInput {
+  id: String
+  clientMutationId: String
+}
+
+type DeleteBrowseHistoryMutationPayload {
+  deletedIds: [ID]
+  clientMutationId: String
+}
 
 input DeleteCrudDemoItemMutationInput {
   id: String
@@ -902,6 +955,11 @@ enum ProductType {
 }
 
 type Query {
+  browseHistoryItem(
+    """The ID of the object"""
+    id: ID!
+  ): BrowseHistoryType
+  browseHistoryItems(before: String, after: String, first: Int, last: Int): BrowseHistoryConnection
   allSubscriptionPlans(before: String, after: String, first: Int, last: Int): SubscriptionPlanConnection
   activeSubscription: SubscriptionScheduleType
   allPaymentMethods(before: String, after: String, first: Int, last: Int): PaymentMethodConnection
@@ -1971,6 +2029,19 @@ enum SubscriptionStatus {
 
   """Unpaid"""
   UNPAID
+}
+
+input UpdateBrowseHistoryMutationInput {
+  base64Data: String
+  createdBy: String
+  id: ID!
+  clientMutationId: String
+}
+
+type UpdateBrowseHistoryMutationPayload {
+  browseHistory: BrowseHistoryType
+  browseHistoryEdge: BrowseHistoryEdge
+  clientMutationId: String
 }
 
 input UpdateCrudDemoItemMutationInput {

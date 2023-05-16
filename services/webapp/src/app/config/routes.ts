@@ -36,6 +36,11 @@ const routes = {
   }),
   documents: 'documents',
   //<-- INJECT ROUTE DEFINITION -->
+  ocr: nestedPath('ocr', {
+    home: '',
+    history: 'history',
+  }),
+  history: 'history',
 };
 export const RoutesConfig = {
   ...routes,

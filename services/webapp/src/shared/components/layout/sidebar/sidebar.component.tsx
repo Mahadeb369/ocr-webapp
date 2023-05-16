@@ -70,47 +70,21 @@ export const Sidebar = (props: HTMLAttributes<HTMLDivElement>) => {
           </MenuLink>
         </RoleAccess>
 
-        <RoleAccess>
-          <MenuLink to={generateLocalePath(RoutesConfig.demoItems)} onClick={closeSidebar}>
-            <FormattedMessage defaultMessage="Demo Contentful items" id="Home / demo contentful items link" />
-          </MenuLink>
-        </RoleAccess>
-
-        <RoleAccess>
-          <MenuLink to={generateLocalePath(RoutesConfig.crudDemoItem.list)} onClick={closeSidebar}>
-            <FormattedMessage defaultMessage="CRUD Example Items" id="Home / CRUD example items link" />
-          </MenuLink>
-        </RoleAccess>
-
         <RoleAccess allowedRoles={Role.ADMIN}>
           <MenuLink to={generateLocalePath(RoutesConfig.admin)} onClick={closeSidebar}>
             <FormattedMessage defaultMessage="Admin" id="Home / admin link" />
           </MenuLink>
         </RoleAccess>
 
-        <MenuLink to={generateLocalePath(RoutesConfig.privacyPolicy)} onClick={closeSidebar}>
-          <FormattedMessage defaultMessage="Privacy policy" id="Home / privacy policy link" />
-        </MenuLink>
-
-        <MenuLink to={generateLocalePath(RoutesConfig.termsAndConditions)} onClick={closeSidebar}>
-          <FormattedMessage defaultMessage="Terms and conditions" id="Home / t&c link" />
-        </MenuLink>
-
         <RoleAccess>
-          <MenuLink to={generateLocalePath(RoutesConfig.finances.paymentConfirm)} onClick={closeSidebar}>
-            <FormattedMessage defaultMessage="Payment demo" id="Home / payment demo link" />
+          <MenuLink to={generateLocalePath(RoutesConfig.ocr.index)} onClick={closeSidebar}>
+            <FormattedMessage defaultMessage="Ocr" id="Home / ocr link" />
           </MenuLink>
         </RoleAccess>
 
         <RoleAccess>
-          <MenuLink to={generateLocalePath(RoutesConfig.subscriptions.index)} onClick={closeSidebar}>
-            <FormattedMessage defaultMessage="My Subscription" id="Home / my subscriptions link" />
-          </MenuLink>
-        </RoleAccess>
-
-        <RoleAccess>
-          <MenuLink to={generateLocalePath(RoutesConfig.documents)} onClick={closeSidebar}>
-            <FormattedMessage defaultMessage="Documents" id="Home / documents link" />
+          <MenuLink to={generateLocalePath(RoutesConfig.history)} onClick={closeSidebar}>
+            <FormattedMessage defaultMessage="History" id="History / history link" />
           </MenuLink>
         </RoleAccess>
 

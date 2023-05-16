@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1cd6fdb24e00836ac9120452b33597f7>>
+ * @generated SignedSource<<a9c67f5094fde698dea64c2f091a86f0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -28,20 +28,7 @@ var v0 = [
     "name": "id",
     "value": "contentful-item-1"
   }
-],
-v1 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "title",
-  "storageKey": null
-},
-v2 = {
-  "enumValues": null,
-  "nullable": true,
-  "plural": false,
-  "type": "String"
-};
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
@@ -83,24 +70,11 @@ return {
         "name": "demoItem",
         "plural": false,
         "selections": [
-          (v1/*: any*/),
           {
             "alias": null,
             "args": null,
-            "concreteType": "Asset",
-            "kind": "LinkedField",
-            "name": "image",
-            "plural": false,
-            "selections": [
-              (v1/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "url",
-                "storageKey": null
-              }
-            ],
+            "kind": "ScalarField",
+            "name": "title",
             "storageKey": null
           }
         ],
@@ -109,7 +83,7 @@ return {
     ]
   },
   "params": {
-    "cacheID": "cad66189f5756860c1c15152587771b8",
+    "cacheID": "86873537730462de256e97217b4b3e4e",
     "id": null,
     "metadata": {
       "relayTestingSelectionTypeInfo": {
@@ -119,20 +93,17 @@ return {
           "plural": false,
           "type": "DemoItem"
         },
-        "testItem.image": {
+        "testItem.title": {
           "enumValues": null,
           "nullable": true,
           "plural": false,
-          "type": "Asset"
-        },
-        "testItem.image.title": (v2/*: any*/),
-        "testItem.image.url": (v2/*: any*/),
-        "testItem.title": (v2/*: any*/)
+          "type": "String"
+        }
       }
     },
     "name": "demoItemListItemTestQuery",
     "operationKind": "query",
-    "text": "query demoItemListItemTestQuery {\n  testItem: demoItem(id: \"contentful-item-1\") {\n    ...demoItemListItem_item\n  }\n}\n\nfragment demoItemListItem_item on DemoItem {\n  title\n  image {\n    title\n    url\n  }\n}\n"
+    "text": "query demoItemListItemTestQuery {\n  testItem: demoItem(id: \"contentful-item-1\") {\n    ...demoItemListItem_item\n  }\n}\n\nfragment demoItemListItem_item on DemoItem {\n  title\n}\n"
   }
 };
 })();

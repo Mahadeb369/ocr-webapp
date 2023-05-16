@@ -15,7 +15,7 @@ SendEmail:
   environment:
     AWS_ENDPOINT_URL: "https://localstack:4566"
     FROM_EMAIL: "from@example.com"
-    WEB_APP_URL: "http://localhost:3000"
+    WEB_APP_URL: "http://localhost:3002"
 
 SynchronizeContentfulContent:
   environment:

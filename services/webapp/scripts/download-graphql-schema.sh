@@ -25,9 +25,9 @@ function wrap_chunk_module() {
 }
 
 # Merge is only for the IntelliJ
-wrap_chunk_module contentful contentful
-wrap_chunk_module graphqlApi api
-node ./scripts/merge-schemas.js
+# wrap_chunk_module contentful contentful
+# wrap_chunk_module graphqlApi api
+# node ./scripts/merge-schemas.js
 
-# remove empty comments as they break IntelliJ schema parsing
-sed -i '' 's/""""""//' ./graphql/schema/schema.graphql
+# # remove empty comments as they break IntelliJ schema parsing
+# sed -i '' 's/""""""//' ./graphql/schema/schema.graphql

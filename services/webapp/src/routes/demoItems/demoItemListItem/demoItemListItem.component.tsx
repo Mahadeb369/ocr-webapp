@@ -29,10 +29,6 @@ export const DemoItemListItem = ({ id, item, queryRef }: DemoItemListItemProps) 
     graphql`
       fragment demoItemListItem_item on DemoItem {
         title
-        image {
-          title
-          url
-        }
       }
     `,
     item
@@ -56,7 +52,7 @@ export const DemoItemListItem = ({ id, item, queryRef }: DemoItemListItemProps) 
           <Icon icon={isFavorite ? favoriteIconFilled : favoriteIconOutlined} />
         </FavoriteIcon>
 
-        {data?.image && <Thumbnail {...imageProps(data.image, { size: { height: 50 } })} role="presentation" />}
+        {/* {data?.image && <Thumbnail {...imageProps(data.image, { size: { height: 50 } })} role="presentation" />} */}
         <Title>{data?.title}</Title>
       </Link>
     </Container>

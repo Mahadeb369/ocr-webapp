@@ -25,7 +25,7 @@ export interface Scalars {
   Quality: any;
 }
 
-/** [See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/appConfig) */
+/** [See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/appConfig) */
 export interface ContentfulAppConfig extends ContentfulEntry {
   __typename?: 'AppConfig';
   contentfulMetadata: ContentfulContentfulMetadata;
@@ -37,25 +37,25 @@ export interface ContentfulAppConfig extends ContentfulEntry {
 }
 
 
-/** [See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/appConfig) */
+/** [See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/appConfig) */
 export interface ContentfulAppConfigLinkedFromArgs {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 }
 
 
-/** [See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/appConfig) */
+/** [See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/appConfig) */
 export interface ContentfulAppConfigNameArgs {
   locale?: InputMaybe<Scalars['String']>;
 }
 
 
-/** [See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/appConfig) */
+/** [See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/appConfig) */
 export interface ContentfulAppConfigPrivacyPolicyArgs {
   locale?: InputMaybe<Scalars['String']>;
 }
 
 
-/** [See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/appConfig) */
+/** [See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/appConfig) */
 export interface ContentfulAppConfigTermsAndConditionsArgs {
   locale?: InputMaybe<Scalars['String']>;
 }
@@ -272,16 +272,7 @@ export interface ContentfulAssetFilter {
 
 export interface ContentfulAssetLinkingCollections {
   __typename?: 'AssetLinkingCollections';
-  demoItemCollection?: Maybe<ContentfulDemoItemCollection>;
   entryCollection?: Maybe<ContentfulEntryCollection>;
-}
-
-
-export interface ContentfulAssetLinkingCollectionsDemoItemCollectionArgs {
-  limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Scalars['String']>;
-  preview?: InputMaybe<Scalars['Boolean']>;
-  skip?: InputMaybe<Scalars['Int']>;
 }
 
 
@@ -341,38 +332,37 @@ export interface ContentfulContentfulTag {
   name?: Maybe<Scalars['String']>;
 }
 
-/** [See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/demoItem) */
+/** [See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/demoItem) */
 export interface ContentfulDemoItem extends ContentfulEntry {
   __typename?: 'DemoItem';
   contentfulMetadata: ContentfulContentfulMetadata;
   description?: Maybe<Scalars['String']>;
-  image?: Maybe<ContentfulAsset>;
+  image?: Maybe<Scalars['String']>;
   linkedFrom?: Maybe<ContentfulDemoItemLinkingCollections>;
   sys: ContentfulSys;
   title?: Maybe<Scalars['String']>;
 }
 
 
-/** [See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/demoItem) */
+/** [See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/demoItem) */
 export interface ContentfulDemoItemDescriptionArgs {
   locale?: InputMaybe<Scalars['String']>;
 }
 
 
-/** [See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/demoItem) */
+/** [See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/demoItem) */
 export interface ContentfulDemoItemImageArgs {
   locale?: InputMaybe<Scalars['String']>;
-  preview?: InputMaybe<Scalars['Boolean']>;
 }
 
 
-/** [See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/demoItem) */
+/** [See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/demoItem) */
 export interface ContentfulDemoItemLinkedFromArgs {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 }
 
 
-/** [See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/demoItem) */
+/** [See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/demoItem) */
 export interface ContentfulDemoItemTitleArgs {
   locale?: InputMaybe<Scalars['String']>;
 }
@@ -396,7 +386,13 @@ export interface ContentfulDemoItemFilter {
   description_not?: InputMaybe<Scalars['String']>;
   description_not_contains?: InputMaybe<Scalars['String']>;
   description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  image?: InputMaybe<Scalars['String']>;
+  image_contains?: InputMaybe<Scalars['String']>;
   image_exists?: InputMaybe<Scalars['Boolean']>;
+  image_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  image_not?: InputMaybe<Scalars['String']>;
+  image_not_contains?: InputMaybe<Scalars['String']>;
+  image_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   sys?: InputMaybe<ContentfulSysFilter>;
   title?: InputMaybe<Scalars['String']>;
   title_contains?: InputMaybe<Scalars['String']>;
@@ -421,6 +417,8 @@ export interface ContentfulDemoItemLinkingCollectionsEntryCollectionArgs {
 }
 
 export enum ContentfulDemoItemOrder {
+  IMAGE_ASC = 'image_ASC',
+  IMAGE_DESC = 'image_DESC',
   SYS_FIRSTPUBLISHEDAT_ASC = 'sys_firstPublishedAt_ASC',
   SYS_FIRSTPUBLISHEDAT_DESC = 'sys_firstPublishedAt_DESC',
   SYS_ID_ASC = 'sys_id_ASC',

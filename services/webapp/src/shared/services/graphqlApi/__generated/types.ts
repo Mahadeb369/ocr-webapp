@@ -44,11 +44,13 @@ export interface ApiMutation {
   changeActiveSubscription?: Maybe<ChangeActiveSubscriptionMutationPayload>;
   changePassword?: Maybe<ChangePasswordMutationPayload>;
   confirm?: Maybe<ConfirmEmailMutationPayload>;
+  createCrossingItem?: Maybe<CreateBrowseHistoryMutationPayload>;
   createCrudDemoItem?: Maybe<CreateCrudDemoItemMutationPayload>;
   createDocumentDemoItem?: Maybe<CreateDocumentDemoItemMutationPayload>;
   createFavoriteContentfulDemoItem?: Maybe<CreateFavoriteContentfulDemoItemMutationPayload>;
   createPaymentIntent?: Maybe<CreatePaymentIntentMutationPayload>;
   createSetupIntent?: Maybe<CreateSetupIntentMutationPayload>;
+  deleteCrossingItem?: Maybe<DeleteBrowseHistoryMutationPayload>;
   deleteCrudDemoItem?: Maybe<DeleteCrudDemoItemMutationPayload>;
   deleteDocumentDemoItem?: Maybe<DeleteDocumentDemoItemMutationPayload>;
   deleteFavoriteContentfulDemoItem?: Maybe<DeleteFavoriteContentfulDemoItemMutationPayload>;
@@ -58,6 +60,7 @@ export interface ApiMutation {
   passwordResetConfirm?: Maybe<PasswordResetConfirmationMutationPayload>;
   signUp?: Maybe<SingUpMutationPayload>;
   tokenAuth?: Maybe<ObtainTokenMutationPayload>;
+  updateCrossingItem?: Maybe<UpdateBrowseHistoryMutationPayload>;
   updateCrudDemoItem?: Maybe<UpdateCrudDemoItemMutationPayload>;
   updateCurrentUser?: Maybe<UpdateCurrentUserMutationPayload>;
   updateDefaultPaymentMethod?: Maybe<UpdateDefaultPaymentMethodMutationPayload>;
@@ -86,6 +89,11 @@ export interface ApiMutationConfirmArgs {
 }
 
 
+export interface ApiMutationCreateCrossingItemArgs {
+  input: CreateBrowseHistoryMutationInput;
+}
+
+
 export interface ApiMutationCreateCrudDemoItemArgs {
   input: CreateCrudDemoItemMutationInput;
 }
@@ -108,6 +116,11 @@ export interface ApiMutationCreatePaymentIntentArgs {
 
 export interface ApiMutationCreateSetupIntentArgs {
   input: CreateSetupIntentMutationInput;
+}
+
+
+export interface ApiMutationDeleteCrossingItemArgs {
+  input: DeleteBrowseHistoryMutationInput;
 }
 
 
@@ -156,6 +169,11 @@ export interface ApiMutationTokenAuthArgs {
 }
 
 
+export interface ApiMutationUpdateCrossingItemArgs {
+  input: UpdateBrowseHistoryMutationInput;
+}
+
+
 export interface ApiMutationUpdateCrudDemoItemArgs {
   input: UpdateCrudDemoItemMutationInput;
 }
@@ -191,6 +209,34 @@ export interface ApiSubscriptionNotificationCreatedArgs {
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
+}
+
+export interface BrowseHistoryConnection {
+  __typename?: 'BrowseHistoryConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<BrowseHistoryEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+}
+
+/** A Relay edge containing a `BrowseHistory` and its cursor. */
+export interface BrowseHistoryEdge {
+  __typename?: 'BrowseHistoryEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge */
+  node?: Maybe<BrowseHistoryType>;
+}
+
+export interface BrowseHistoryType extends Node {
+  __typename?: 'BrowseHistoryType';
+  /** Actual primary key of a Browse History item */
+  actualId?: Maybe<Scalars['ID']>;
+  base64Data?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  createdBy?: Maybe<CurrentUserType>;
+  /** The ID of the object. */
+  id: Scalars['ID'];
 }
 
 export interface CancelActiveSubscriptionMutationInput {
@@ -511,6 +557,19 @@ export interface ContentfulDemoItemTypeContentfuldemoitemfavoriteSetArgs {
   offset?: InputMaybe<Scalars['Int']>;
 }
 
+export interface CreateBrowseHistoryMutationInput {
+  base64Data?: InputMaybe<Scalars['String']>;
+  clientMutationId?: InputMaybe<Scalars['String']>;
+  createdBy?: InputMaybe<Scalars['String']>;
+}
+
+export interface CreateBrowseHistoryMutationPayload {
+  __typename?: 'CreateBrowseHistoryMutationPayload';
+  browseHistory?: Maybe<BrowseHistoryType>;
+  browseHistoryEdge?: Maybe<BrowseHistoryEdge>;
+  clientMutationId?: Maybe<Scalars['String']>;
+}
+
 export interface CreateCrudDemoItemMutationInput {
   clientMutationId?: InputMaybe<Scalars['String']>;
   createdBy?: InputMaybe<Scalars['String']>;
@@ -613,6 +672,17 @@ export interface CurrentUserType {
   id: Scalars['ID'];
   lastName?: Maybe<Scalars['String']>;
   roles?: Maybe<Array<Maybe<Scalars['String']>>>;
+}
+
+export interface DeleteBrowseHistoryMutationInput {
+  clientMutationId?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+}
+
+export interface DeleteBrowseHistoryMutationPayload {
+  __typename?: 'DeleteBrowseHistoryMutationPayload';
+  clientMutationId?: Maybe<Scalars['String']>;
+  deletedIds?: Maybe<Array<Maybe<Scalars['ID']>>>;
 }
 
 export interface DeleteCrudDemoItemMutationInput {
@@ -944,6 +1014,8 @@ export interface Query {
   allNotifications?: Maybe<NotificationConnection>;
   allPaymentMethods?: Maybe<PaymentMethodConnection>;
   allSubscriptionPlans?: Maybe<SubscriptionPlanConnection>;
+  browseHistoryItem?: Maybe<BrowseHistoryType>;
+  browseHistoryItems?: Maybe<BrowseHistoryConnection>;
   charge?: Maybe<StripeChargeType>;
   crudDemoItem?: Maybe<CrudDemoItemType>;
   currentUser?: Maybe<CurrentUserType>;
@@ -1002,6 +1074,19 @@ export interface QueryAllPaymentMethodsArgs {
 
 
 export interface QueryAllSubscriptionPlansArgs {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+}
+
+
+export interface QueryBrowseHistoryItemArgs {
+  id: Scalars['ID'];
+}
+
+
+export interface QueryBrowseHistoryItemsArgs {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
@@ -1859,6 +1944,20 @@ export enum SubscriptionStatus {
   Trialing = 'TRIALING',
   /** Unpaid */
   Unpaid = 'UNPAID'
+}
+
+export interface UpdateBrowseHistoryMutationInput {
+  base64Data?: InputMaybe<Scalars['String']>;
+  clientMutationId?: InputMaybe<Scalars['String']>;
+  createdBy?: InputMaybe<Scalars['String']>;
+  id: Scalars['ID'];
+}
+
+export interface UpdateBrowseHistoryMutationPayload {
+  __typename?: 'UpdateBrowseHistoryMutationPayload';
+  browseHistory?: Maybe<BrowseHistoryType>;
+  browseHistoryEdge?: Maybe<BrowseHistoryEdge>;
+  clientMutationId?: Maybe<Scalars['String']>;
 }
 
 export interface UpdateCrudDemoItemMutationInput {

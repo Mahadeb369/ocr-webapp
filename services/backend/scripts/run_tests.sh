@@ -13,7 +13,7 @@ else
    black --config=pyproject.toml .
 fi
 
-./scripts/wait-for-it.sh db:5434
+./scripts/wait-for-it.sh db:5432
 
 env $(cat .test.env | xargs) python ./manage.py makemigrations --check --dry-run
 pytest

@@ -29,7 +29,7 @@ export const DemoItemContent: FC<DemoItemContentProps> = ({ itemQueryRef }) => {
       <BackButton to={generateLocalePath(RoutesConfig.demoItems)} />
       <Title>{item?.title}</Title>
       <Description>{item?.description}</Description>
-      {item?.image && <Image {...imageProps(item.image)} />}
+      {/* {item?.image && <Image {...imageProps(item.image)} />} */}
     </Container>
   );
 };

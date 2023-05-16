@@ -20,7 +20,7 @@ Set environmental variables in the `services/backend/.env` file.
 If it doesn't exist create it using `services/backend/.env.example` first.
 
 ```
-SOCIAL_AUTH_ALLOWED_REDIRECT_HOSTS=localhost:3000
+SOCIAL_AUTH_ALLOWED_REDIRECT_HOSTS=localhost:3002
 ```
 
 ## Running in AWS
@@ -55,10 +55,11 @@ Variables are set in a JSON format so add following keys:
 - Delete all backends from `social_core` package from `AUTHENTICATION_BACKENDS` Django setting.
 - Delete all settings prefixed with `SOCIAL_` from Django settings module.
 - Remove `social-auth-app-django` and `social-auth-core` from `pyproject.toml`:
-    ```
-    $ pdm remove social-auth-app-django social-auth-core
-    ```
+  ```
+  $ pdm remove social-auth-app-django social-auth-core
+  ```
 - Also:
+
 ```diff
 diff --git a/services/backend/apps/users/strategy.py b/services/backend/apps/users/strategy.py
 index 4c94870..e69de29 100644
@@ -103,9 +104,9 @@ index d1191a1..43ae4b3 100644
  from django.urls import path, include
 -from django.urls import re_path
 -from social_django import views as django_social_views
- 
+
  from . import views
- 
+
 -social_patterns = [
 -    # authentication / association
 -    re_path(r'^login/(?P<backend>[^/]+)/$', django_social_views.auth, name='begin'),
@@ -128,7 +129,7 @@ index d1191a1..43ae4b3 100644
      ),
 -    path('social/', include((social_patterns, 'social'), namespace='social')),
  ]
- 
+
  password_reset_patterns = [
 diff --git a/services/backend/apps/users/views.py b/services/backend/apps/users/views.py
 index faa2099..a62afab 100644
@@ -140,7 +141,7 @@ index faa2099..a62afab 100644
  from rest_framework_simplejwt import views as jwt_views, tokens as jwt_tokens
 -from social_core.actions import do_complete
 -from social_django.utils import psa
- 
+
  from common.acl import policies
  from . import serializers, utils
 @@ -118,25 +116,3 @@ class CookieTokenRefreshView(jwt_views.TokenRefreshView):
@@ -174,7 +175,7 @@ index a45bd82..b74b43a 100644
 --- a/services/backend/config/settings.py
 +++ b/services/backend/config/settings.py
 @@ -46,17 +46,15 @@ DJANGO_CORE_APPS = [
- 
+
  THIRD_PARTY_APPS = [
      "django_extensions",
      "djstripe",
@@ -188,17 +189,17 @@ index a45bd82..b74b43a 100644
  ]
 @@ -171,8 +169,6 @@ STATIC_URL = '/static/'
  AUTH_USER_MODEL = "users.User"
- 
+
  AUTHENTICATION_BACKENDS = (
 -    'social_core.backends.google.GoogleOAuth2',
 -    'social_core.backends.facebook.FacebookOAuth2',
      'django.contrib.auth.backends.ModelBackend',
  )
- 
+
 @@ -198,32 +194,6 @@ SIMPLE_JWT = {
  ACCESS_TOKEN_COOKIE = 'token'
  REFRESH_TOKEN_COOKIE = 'refresh_token'
- 
+
 -SOCIAL_AUTH_USER_MODEL = "users.User"
 -SOCIAL_AUTH_USER_FIELDS = ['email', 'username']
 -SOCIAL_AUTH_STRATEGY = "apps.users.strategy.DjangoJWTStrategy"

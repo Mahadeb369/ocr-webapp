@@ -8,11 +8,6 @@ export const useDemoItemQuery = () => {
       demoItem(id: $id) {
         title
         description
-        image {
-          url
-          title
-          description
-        }
       }
     }
   `);

@@ -5,7 +5,7 @@ directive @specifiedBy(
 ) on SCALAR
 
 """
-[See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/appConfig)
+[See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/appConfig)
 """
 type AppConfig implements Entry {
   sys: Sys!
@@ -161,7 +161,6 @@ input AssetFilter {
 
 type AssetLinkingCollections {
   entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
-  demoItemCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): DemoItemCollection
 }
 
 enum AssetOrder {
@@ -219,7 +218,7 @@ value as specified by
 scalar DateTime
 
 """
-[See type definition](https://app.contentful.com/spaces/m7e7pnsr61vp/content_types/demoItem)
+[See type definition](https://app.contentful.com/spaces/d2pqi8oo73nm/content_types/demoItem)
 """
 type DemoItem implements Entry {
   sys: Sys!
@@ -227,7 +226,7 @@ type DemoItem implements Entry {
   linkedFrom(allowedLocales: [String]): DemoItemLinkingCollections
   title(locale: String): String
   description(locale: String): String
-  image(preview: Boolean, locale: String): Asset
+  image(locale: String): String
 }
 
 type DemoItemCollection {
@@ -255,6 +254,12 @@ input DemoItemFilter {
   description_contains: String
   description_not_contains: String
   image_exists: Boolean
+  image: String
+  image_not: String
+  image_in: [String]
+  image_not_in: [String]
+  image_contains: String
+  image_not_contains: String
   OR: [DemoItemFilter]
   AND: [DemoItemFilter]
 }
@@ -266,6 +271,8 @@ type DemoItemLinkingCollections {
 enum DemoItemOrder {
   title_ASC
   title_DESC
+  image_ASC
+  image_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
@@ -428,6 +435,11 @@ type Query {
   appConfig(id: String!, preview: Boolean, locale: String): AppConfig
   appConfigCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: AppConfigFilter, order: [AppConfigOrder]): AppConfigCollection
   entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: EntryFilter, order: [EntryOrder]): EntryCollection
+  browseHistoryItem(
+    """The ID of the object"""
+    id: ID!
+  ): BrowseHistoryType
+  browseHistoryItems(before: String, after: String, first: Int, last: Int): BrowseHistoryConnection
   allSubscriptionPlans(before: String, after: String, first: Int, last: Int): SubscriptionPlanConnection
   activeSubscription: SubscriptionScheduleType
   allPaymentMethods(before: String, after: String, first: Int, last: Int): PaymentMethodConnection
@@ -503,6 +515,9 @@ schema {
 }
 
 type ApiMutation {
+  createCrossingItem(input: CreateBrowseHistoryMutationInput!): CreateBrowseHistoryMutationPayload
+  updateCrossingItem(input: UpdateBrowseHistoryMutationInput!): UpdateBrowseHistoryMutationPayload
+  deleteCrossingItem(input: DeleteBrowseHistoryMutationInput!): DeleteBrowseHistoryMutationPayload
   changeActiveSubscription(input: ChangeActiveSubscriptionMutationInput!): ChangeActiveSubscriptionMutationPayload
   cancelActiveSubscription(input: CancelActiveSubscriptionMutationInput!): CancelActiveSubscriptionMutationPayload
   updateDefaultPaymentMethod(input: UpdateDefaultPaymentMethodMutationInput!): UpdateDefaultPaymentMethodMutationPayload
@@ -530,6 +545,31 @@ type ApiMutation {
 
 type ApiSubscription {
   notificationCreated(before: String, after: String, first: Int, last: Int): NotificationConnection
+}
+
+type BrowseHistoryConnection {
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+  """Contains the nodes in this connection."""
+  edges: [BrowseHistoryEdge]!
+}
+
+"""A Relay edge containing a `BrowseHistory` and its cursor."""
+type BrowseHistoryEdge {
+  """The item at the end of the edge"""
+  node: BrowseHistoryType
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type BrowseHistoryType implements Node {
+  """The ID of the object."""
+  id: ID!
+  base64Data: String
+  createdBy: CurrentUserType
+  createdAt: DateTime!
+  """Actual primary key of a Browse History item"""
+  actualId: ID
 }
 
 input CancelActiveSubscriptionMutationInput {
@@ -831,6 +871,18 @@ type ContentfulDemoItemType implements Node {
   pk: String
 }
 
+input CreateBrowseHistoryMutationInput {
+  base64Data: String
+  createdBy: String
+  clientMutationId: String
+}
+
+type CreateBrowseHistoryMutationPayload {
+  browseHistory: BrowseHistoryType
+  browseHistoryEdge: BrowseHistoryEdge
+  clientMutationId: String
+}
+
 input CreateCrudDemoItemMutationInput {
   name: String!
   createdBy: String
@@ -927,6 +979,16 @@ type CurrentUserType {
 
 """The `Decimal` scalar type represents a python Decimal."""
 scalar Decimal
+
+input DeleteBrowseHistoryMutationInput {
+  id: String
+  clientMutationId: String
+}
+
+type DeleteBrowseHistoryMutationPayload {
+  deletedIds: [ID]
+  clientMutationId: String
+}
 
 input DeleteCrudDemoItemMutationInput {
   id: String
@@ -2107,6 +2169,19 @@ enum SubscriptionStatus {
   TRIALING
   """Unpaid"""
   UNPAID
+}
+
+input UpdateBrowseHistoryMutationInput {
+  base64Data: String
+  createdBy: String
+  id: ID!
+  clientMutationId: String
+}
+
+type UpdateBrowseHistoryMutationPayload {
+  browseHistory: BrowseHistoryType
+  browseHistoryEdge: BrowseHistoryEdge
+  clientMutationId: String
 }
 
 input UpdateCrudDemoItemMutationInput {

@@ -11,7 +11,7 @@ import { ContentfulDemoItemFavoriteType } from '../../shared/services/graphqlApi
 import { createDeepFactory } from './factoryCreators';
 import { contentfulSysFactory } from './helpers';
 
-export const demoItemFactory = createDeepFactory<ContentfulDemoItem>(() => ({
+export const demoItemFactory = createDeepFactory<any>(() => ({
   title: 'Demo item mock title',
   description: 'Demo item mock description',
   sys: contentfulSysFactory(),

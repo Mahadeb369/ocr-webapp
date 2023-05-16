@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2a48b3d98068f5f92dd242f90f0e3bdc>>
+ * @generated SignedSource<<21c77b152407f486e38da35f98431a55>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -43,13 +43,6 @@ var v0 = {
       "storageKey": null
     }
   ],
-  "storageKey": null
-},
-v1 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "title",
   "storageKey": null
 };
 return {
@@ -114,24 +107,11 @@ return {
             "plural": true,
             "selections": [
               (v0/*: any*/),
-              (v1/*: any*/),
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "Asset",
-                "kind": "LinkedField",
-                "name": "image",
-                "plural": false,
-                "selections": [
-                  (v1/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "url",
-                    "storageKey": null
-                  }
-                ],
+                "kind": "ScalarField",
+                "name": "title",
                 "storageKey": null
               }
             ],
@@ -143,12 +123,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "91a1fb64c9eb710b28a1257983fbb7df",
+    "cacheID": "b3f7ffcd06d20116736c4fe38e7dba44",
     "id": null,
     "metadata": {},
     "name": "demoItemsAllQuery",
     "operationKind": "query",
-    "text": "query demoItemsAllQuery {\n  demoItemCollection {\n    items {\n      sys {\n        id\n      }\n      ...demoItemListItem_item\n    }\n  }\n}\n\nfragment demoItemListItem_item on DemoItem {\n  title\n  image {\n    title\n    url\n  }\n}\n"
+    "text": "query demoItemsAllQuery {\n  demoItemCollection {\n    items {\n      sys {\n        id\n      }\n      ...demoItemListItem_item\n    }\n  }\n}\n\nfragment demoItemListItem_item on DemoItem {\n  title\n}\n"
   }
 };
 })();

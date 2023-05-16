@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3af443dda72e18738ecf0bc5b1e263e7>>
+ * @generated SignedSource<<ed00db3ec2158740d1f5b5167079b942>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,11 +15,6 @@ export type demoItemQuery$variables = {
 export type demoItemQuery$data = {
   readonly demoItem: {
     readonly description: string | null;
-    readonly image: {
-      readonly description: string | null;
-      readonly title: string | null;
-      readonly url: string | null;
-    } | null;
     readonly title: string | null;
   } | null;
 };
@@ -36,21 +31,7 @@ var v0 = [
     "name": "id"
   }
 ],
-v1 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "title",
-  "storageKey": null
-},
-v2 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "description",
-  "storageKey": null
-},
-v3 = [
+v1 = [
   {
     "alias": null,
     "args": [
@@ -65,26 +46,18 @@ v3 = [
     "name": "demoItem",
     "plural": false,
     "selections": [
-      (v1/*: any*/),
-      (v2/*: any*/),
       {
         "alias": null,
         "args": null,
-        "concreteType": "Asset",
-        "kind": "LinkedField",
-        "name": "image",
-        "plural": false,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "url",
-            "storageKey": null
-          },
-          (v1/*: any*/),
-          (v2/*: any*/)
-        ],
+        "kind": "ScalarField",
+        "name": "title",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "description",
         "storageKey": null
       }
     ],
@@ -97,7 +70,7 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "demoItemQuery",
-    "selections": (v3/*: any*/),
+    "selections": (v1/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
@@ -106,19 +79,19 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "demoItemQuery",
-    "selections": (v3/*: any*/)
+    "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "00eb8e7d77bce2b2822c2e496c692fd8",
+    "cacheID": "30dc7c69e0c4c0e2ab7ad65c460bd267",
     "id": null,
     "metadata": {},
     "name": "demoItemQuery",
     "operationKind": "query",
-    "text": "query demoItemQuery(\n  $id: String!\n) {\n  demoItem(id: $id) {\n    title\n    description\n    image {\n      url\n      title\n      description\n    }\n  }\n}\n"
+    "text": "query demoItemQuery(\n  $id: String!\n) {\n  demoItem(id: $id) {\n    title\n    description\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "2c57f8e089a3f7f7a9bbc01c43dab83f";
+(node as any).hash = "5b9918f68e8408f55a7c390ab8711834";
 
 export default node;

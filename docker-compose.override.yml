@@ -111,7 +111,7 @@ services:
   localwsserver:
     build: ./tools/localWSServer
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       - BE_ENDPOINT_URL=http://backend:5000/
     volumes:
