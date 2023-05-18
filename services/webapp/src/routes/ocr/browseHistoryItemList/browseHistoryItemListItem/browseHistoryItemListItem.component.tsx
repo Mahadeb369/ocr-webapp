@@ -8,7 +8,7 @@ type BrowseHistoryItemListItemProps = {
   item: {
     readonly actualId: string | null;
     readonly base64Data: string | null;
-    readonly createdAt: String;
+    readonly createdAt: string;
     readonly id: string;
   };
 };
